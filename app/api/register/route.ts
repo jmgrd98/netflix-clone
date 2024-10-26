@@ -1,10 +1,9 @@
 import bcrypt from 'bcrypt';
-import { NextApiResponse, NextApiRequest } from 'next';
 import prismadb from '@/lib/prismadb';
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: Request) {
     try {
-        const { email, name, password } = JSON.parse(req.body);
+        const { email, name, password } = await req.json();
 
         const existingUser = await prismadb.user.findUnique({
             where: { email },
@@ -13,6 +12,7 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
         if (existingUser) {
             return new Response(JSON.stringify({ error: 'Email taken' }), {
                 status: 422,
+                headers: { 'Content-Type': 'application/json' },
             });
         }
 
@@ -28,9 +28,15 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
             },
         });
 
-        return new Response(JSON.stringify(user), { status: 200 });
+        return new Response(JSON.stringify(user), {
+            status: 200,
+            headers: { 'Content-Type': 'application/json' },
+        });
     } catch (error) {
         console.error(error);
-        return new Response('An error occurred', { status: 400 });
+        return new Response(JSON.stringify({ error: 'An error occurred' }), {
+            status: 400,
+            headers: { 'Content-Type': 'application/json' },
+        });
     }
 }
