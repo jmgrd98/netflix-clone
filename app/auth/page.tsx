@@ -31,7 +31,6 @@ const AuthPage = () => {
         if (loggedIn?.error) {
           console.error(loggedIn.error);
         } else {
-          console.log('Login successful!', loggedIn);
           router.push('/');
         }
       } catch (error) {
@@ -92,10 +91,16 @@ const AuthPage = () => {
               </button>
 
               <div className="flex flex-row items-center gap-4 mt-8 justify-center">
-                <div onClick={() => signIn('google', { callbackUrl: '/' })} className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition" onClick={() => signIn('google', { callbackUrl: '/' })}>
+                <div 
+                  onClick={() => signIn('google', { callbackUrl: '/' })}
+                  className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
+                >
                   <FcGoogle size={32} />
                 </div>
-                <div onClick={() => signIn('github', { callbackUrl: '/' })} className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition" onClick={() => signIn('github', { callbackUrl: '/' })}>
+                <div
+                  onClick={() => signIn('github', { callbackUrl: '/' })}
+                  className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
+                >
                   <FaGithub size={32} />
                 </div>
               </div>
