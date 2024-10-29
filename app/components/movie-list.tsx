@@ -1,4 +1,5 @@
 import { isEmpty } from 'lodash';
+import MovieCard from './movie-card';
 
 interface MovieListProps {
     data: Record<string, any>[];
@@ -13,9 +14,7 @@ const MovieList = ({ data, title }: MovieListProps) => {
             <p className='text-white text-md md:text-xl lg:text-2xl font-semibold mb-4'>{title}</p>
             <div className='grid grid-cols-4 gap-2'>
                 {data.map((movie) => (
-                    <div key={movie.id} className='h-14'>
-                        <p>{movie.title}</p>
-                    </div>
+                    <MovieCard key={movie.id} data={movie} />
                 ))}
             </div>
         </div>

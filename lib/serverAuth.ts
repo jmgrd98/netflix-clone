@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../app/api/auth/[...nextauth]/route";
 import prismadb from "./prismadb";
 
-export const serverAuth = async (req: NextApiRequest, res: NextApiResponse) => {
+export const serverAuth = async (req?: NextApiRequest, res?: NextApiResponse) => {
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.email) {
