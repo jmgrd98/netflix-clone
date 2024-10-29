@@ -31,7 +31,7 @@ const AuthPage = () => {
         if (loggedIn?.error) {
           console.error(loggedIn.error);
         } else {
-          router.push('/');
+          router.push('/profiles');
         }
       } catch (error) {
         console.error('Login error:', error);
