@@ -42,7 +42,8 @@ export async function DELETE(req: NextApiRequest, res: NextApiResponse) {
     try {
         const { currentUser } = await serverAuth(req, res);
 
-        const { movieId } = req.body;
+        console.log(req.body)
+        const { movieId } = await req.body.json();
 
         const existingMovie = await prismadb.movie.findUnique({
             where: {
