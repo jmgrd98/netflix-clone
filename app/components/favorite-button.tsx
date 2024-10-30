@@ -14,28 +14,30 @@ const FavoriteButton = ({ movieId }: FavoriteButtonProps) => {
   const { data: currentUser, mutate: mutateCurrentUser } = useCurrentUser();
 
   const isFavorite = useMemo(() => {
-    const list = currentUser?.favorites || [];
+    const list = currentUser?.favoriteIds || [];
     return list.includes(movieId);
   }, [currentUser, movieId]);
 
   const toggleFavorites = useCallback(async () => {
     try {
       let response;
+      console.log(isFavorite)
       if (isFavorite) {
         response = await axios.delete('/api/favorite', { data: { movieId } });
       } else {
         response = await axios.post('/api/favorite', { movieId });
       }
-
+  
       const updatedFavoriteIds = response?.data?.favoriteIds;
-
-      // Update the SWR cache for both currentUser and favorites
-      await mutateCurrentUser({ ...currentUser, favoriteIds: updatedFavoriteIds }, false);
+  
+      // Update `currentUser` and refetch `isFavorite`
+      await mutateCurrentUser({ ...currentUser, favorites: updatedFavoriteIds });
       mutateFavorites();
+  
     } catch (error) {
       console.error("Failed to update favorites", error);
     }
-  }, [movieId, isFavorite, currentUser, mutateCurrentUser, mutateFavorites]);
+  }, [movieId, isFavorite, currentUser, mutateCurrentUser, mutateFavorites]);  
 
   const Icon = isFavorite ? AiOutlineCheck : AiOutlinePlus;
 

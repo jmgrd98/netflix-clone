@@ -3,10 +3,10 @@ import prismadb from "@/lib/prismadb";
 import {serverAuth} from "@/lib/serverAuth";
 import { NextResponse } from "next/server";
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET() {
 
     try {
-        const { currentUser } = await serverAuth(req, res);
+        const { currentUser } = await serverAuth();
 
         const favoriteMovies = await prismadb.movie.findMany({
             where: {
