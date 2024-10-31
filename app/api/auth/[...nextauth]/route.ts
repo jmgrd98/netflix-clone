@@ -5,7 +5,6 @@ import { compare } from 'bcrypt';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import { NextResponse } from 'next/server';
 
 export const authOptions: AuthOptions = {
     providers: [
