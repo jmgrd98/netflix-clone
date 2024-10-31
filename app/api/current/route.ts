@@ -1,10 +1,9 @@
 import { NextResponse } from 'next/server';
 import { serverAuth } from '@/lib/serverAuth';
-import { NextApiRequest, NextApiResponse } from 'next';
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET() {
     try {
-        const { currentUser } = await serverAuth(req, res);
+        const { currentUser } = await serverAuth();
         console.log(currentUser);
         return NextResponse.json(currentUser, { status: 200 });
     } catch (error) {
