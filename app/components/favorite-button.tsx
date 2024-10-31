@@ -3,7 +3,6 @@ import { useCallback, useMemo } from 'react';
 import useCurrentUser from '@/hooks/useCurrentUser';
 import useFavorites from '@/hooks/useFavorites';
 import { AiOutlineCheck, AiOutlinePlus } from 'react-icons/ai';
-import { mutate } from 'swr';
 
 interface FavoriteButtonProps {
     movieId: string;
@@ -29,7 +28,6 @@ const FavoriteButton = ({ movieId }: FavoriteButtonProps) => {
   
       const updatedFavoriteIds = response?.data?.favoriteIds;
   
-      // Update `currentUser` and refetch `isFavorite`
       await mutateCurrentUser({ ...currentUser, favorites: updatedFavoriteIds });
       mutateFavorites();
   

@@ -9,7 +9,7 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
         const movies = await prismadb.movie.findMany();
         return NextResponse.json(movies, { status: 200 });
     } catch (error) {
-        console.error();
+        console.error(error);
         return NextResponse.error();
     }
 }

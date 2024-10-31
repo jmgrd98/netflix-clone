@@ -1,6 +1,6 @@
 interface InputProps {
     id: string;
-    onChange: any;
+    onChange: Function;
     value: string;
     label: string;
     type?: string;
@@ -12,7 +12,7 @@ const Input = ({ id, onChange, value, label, type }: InputProps) => {
         <input
             value={value}
             type={type}
-            onChange={onChange}
+            onChange={() => onChange}
             id={id}
             className='block rounded-md px-6 pt-6 pb-1 w-full text-md text-white bg-neutral-700 appearance-none focus:outline-none focus:ring-0 focus:border-blue-500 peer'
             placeholder=""
