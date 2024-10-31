@@ -60,12 +60,7 @@ export const authOptions: AuthOptions = {
     secret: process.env.NEXTAUTH_SECRET,
 };
 
-export async function GET(req: Request) {
-    const response = await NextAuth(authOptions)(req);
-    return NextResponse.json(response);
-}
+const handler = NextAuth(authOptions)
 
-export async function POST(req: Request) {
-    const response = await NextAuth(authOptions)(req);
-    return NextResponse.json(response);
-}
+export { handler as GET, handler as POST }
+
