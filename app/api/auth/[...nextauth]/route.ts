@@ -5,6 +5,7 @@ import { compare } from 'bcrypt';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import { NextResponse } from 'next/server';
 
 export const authOptions: AuthOptions = {
     providers: [
@@ -59,7 +60,12 @@ export const authOptions: AuthOptions = {
     secret: process.env.NEXTAUTH_SECRET,
 };
 
-const handler = NextAuth(authOptions)
+export async function GET(req: Request) {
+    const res = await NextAuth(authOptions)(req);
+    return NextResponse.next(res);
+}
 
-export { handler as GET, handler as POST }
-
+export async function POST(req: Request) {
+    const res = await NextAuth(authOptions)(req);
+    return NextResponse.next(res);
+}
