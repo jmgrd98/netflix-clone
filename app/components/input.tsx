@@ -1,6 +1,6 @@
 interface InputProps {
     id: string;
-    onChange: Function;
+    onChange: () => void;
     value: string;
     label: string;
     type?: string;

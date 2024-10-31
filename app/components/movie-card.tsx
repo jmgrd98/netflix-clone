@@ -4,16 +4,7 @@ import { useRouter } from 'next/navigation';
 import useInfoModal from '@/hooks/useInfoModal';
 import { BiChevronDown } from 'react-icons/bi'; 
 import Image from 'next/image';
-
-interface Movie {
-  id: string;
-  title: string;
-  description: string;
-  videoUrl: string;
-  thumbnailUrl: string;
-  genre: string;
-  duration: string;
-}
+import { Movie } from '@prisma/client';
 
 interface MovieCardProps {
   data: Movie

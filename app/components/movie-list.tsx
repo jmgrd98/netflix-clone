@@ -1,8 +1,9 @@
 import { isEmpty } from 'lodash';
 import MovieCard from './movie-card';
+import { Movie } from '@prisma/client';
 
 interface MovieListProps {
-    data: Record<string, any>[];
+    data: Movie[];
     title: string;
 }
 
