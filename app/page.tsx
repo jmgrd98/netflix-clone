@@ -9,11 +9,13 @@ import MovieList from './components/movie-list';
 import useMovieList from '@/hooks/useMovieList';
 import useFavorites from '@/hooks/useFavorites';
 import InfoModal from './components/info-modal';
+import useInfoModal from '@/hooks/useInfoModal';
 
 export default function Home() {
   const { data: movies = [] } = useMovieList();
   const { data: favorites = [] } = useFavorites();
   const router = useRouter();
+  const { isOpen, closeModal } = useInfoModal();
 
   useEffect(() => {
     async function checkSession() {
@@ -28,7 +30,7 @@ export default function Home() {
 
   return (
     <div>
-      <InfoModal visible onClose={() => {}} />
+      <InfoModal visible={isOpen} onClose={closeModal} />
       <Navbar />
       <Billboard />
       <div className='pb-40'>
