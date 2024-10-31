@@ -1,15 +1,10 @@
 import prismadb from '@/lib/prismadb';
 import { NextRequest, NextResponse } from 'next/server';
 
-interface Context {
-    params: {
-        movieId: string;
-    };
-}
-
-export async function GET(req: NextRequest, { params }: Context) {
+export async function GET(req: NextRequest) {
     try {
-        const { movieId } = params;
+        const { searchParams } = new URL(req.url);
+        const movieId = searchParams.get('movieId');
 
         if (!movieId || typeof movieId !== 'string') {
             throw new Error('Invalid ID');
