@@ -8,6 +8,7 @@ import Billboard from './components/billboard';
 import MovieList from './components/movie-list';
 import useMovieList from '@/hooks/useMovieList';
 import useFavorites from '@/hooks/useFavorites';
+import InfoModal from './components/info-modal';
 
 export default function Home() {
   const { data: movies = [] } = useMovieList();
@@ -27,6 +28,7 @@ export default function Home() {
 
   return (
     <div>
+      <InfoModal visible onClose={() => {}} />
       <Navbar />
       <Billboard />
       <div className='pb-40'>

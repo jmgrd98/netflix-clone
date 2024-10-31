@@ -1,5 +1,6 @@
 import useBillboard from '@/hooks/useBillboard'
 import { AiOutlineInfoCircle } from 'react-icons/ai';
+import PlayButton from './play-button';
 
 const Billboard = () => {
   const { data } = useBillboard();
@@ -21,6 +22,7 @@ const Billboard = () => {
                   <AiOutlineInfoCircle className='mr-1' />
                   More Info
                 </button>
+                <PlayButton movieId={data?.id} />
             </div>
         </div>
     </div>

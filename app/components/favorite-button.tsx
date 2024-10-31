@@ -21,7 +21,6 @@ const FavoriteButton = ({ movieId }: FavoriteButtonProps) => {
   const toggleFavorites = useCallback(async () => {
     try {
       let response;
-      console.log(isFavorite)
       if (isFavorite) {
         response = await axios.delete('/api/favorite', { data: { movieId } });
       } else {
